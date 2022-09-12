@@ -1,32 +1,18 @@
-mod math;
-mod user_input;
+use std::io;
 
-// fn main() {
-//     let user_input: i32 = user_input::get_user_input("Enter a positive integer: ");
-//     let mut numbers: Vec<i32> = math::number_to_vector(user_input);
-//     numbers.remove(numbers.iter().position(|x| *x == 1).unwrap());
-//     let mut numbers_to_remove: Vec<i32> = Vec::new();
+pub fn get_user_input(prompt: &str) -> i32 {
+    println!("{}", prompt);
 
-//     let ceiling_root: i32 = (user_input as f64).sqrt().ceil() as i32;
+    let mut user_input: String = String::new();
 
-//     for i in 2..ceiling_root + 1 {
-//         for j in i..user_input + 1 {
-//             numbers_to_remove.push(i * j);
-//         }
-//     }
+    io::stdin()
+        .read_line(&mut user_input)
+        .expect("Failed to read line");
 
-//     numbers_to_remove.sort_unstable();
-//     numbers_to_remove.dedup();
-//     numbers_to_remove.retain(|x| *x <= user_input);
+    let number: i32 = user_input.trim().parse().expect("Please enter an integer!");
 
-//     for number in numbers_to_remove {
-//         if numbers.iter().any(|&i| i == number) {
-//             numbers.remove(numbers.iter().position(|x| *x == number).unwrap());
-//         }
-//     }
-
-//     println!("Prime numbers up to {}: {:?}", user_input, numbers);
-// }
+    return number;
+}
 
 fn primes_up_to(number: i32) {
     let primes: Vec<i32> = (2..=number).filter(is_prime).collect::<Vec<i32>>();
@@ -39,6 +25,6 @@ fn is_prime(number: &i32) -> bool {
 }
 
 fn main() {
-    let user_input: i32 = user_input::get_user_input("Enter a positive integer greater than 2: ");
+    let user_input: i32 = get_user_input("Enter a positive integer greater than 2: ");
     primes_up_to(user_input);
 }
