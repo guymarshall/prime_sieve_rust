@@ -11,5 +11,5 @@ pub fn get_user_input(prompt: &str) -> i32 {
 
     let number: i32 = user_input.trim().parse().expect("Please enter an integer!");
 
-    number
+    return number;
 }

@@ -5,5 +5,5 @@ pub fn number_to_vector(number: i32) -> Vec<i32> {
         numbers.push(i);
     }
 
-    numbers
+    return numbers;
 }
