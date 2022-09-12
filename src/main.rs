@@ -1,4 +1,5 @@
 use std::io;
+use rayon::prelude::*;
 
 pub fn get_user_input(prompt: &str) -> i32 {
     println!("{}", prompt);
@@ -15,7 +16,7 @@ pub fn get_user_input(prompt: &str) -> i32 {
 }
 
 fn primes_up_to(number: i32) {
-    let primes: Vec<i32> = (2..=number).filter(is_prime).collect::<Vec<i32>>();
+    let primes: Vec<i32> = (2..=number).into_par_iter().filter(is_prime).collect::<Vec<i32>>();
 
     println!("{:?}", primes);
 }
