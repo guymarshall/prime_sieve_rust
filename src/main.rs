@@ -15,10 +15,8 @@ pub fn get_user_input(prompt: &str) -> i128 {
     return number;
 }
 
-fn primes_up_to(number: i128) {
-    let primes: Vec<i128> = (2..=number).into_par_iter().filter(is_prime).collect::<Vec<i128>>();
-
-    println!("{:?}", primes);
+fn primes_up_to(number: i128) -> Vec<i128> {
+    (2..=number).into_par_iter().filter(is_prime).collect::<Vec<i128>>()
 }
 
 fn is_prime(number: &i128) -> bool {
@@ -32,5 +30,6 @@ fn is_prime(number: &i128) -> bool {
 
 fn main() {
     let user_input: i128 = get_user_input("Enter a positive integer greater than 2: ");
-    primes_up_to(user_input);
+    let primes: Vec<i128> = primes_up_to(user_input);
+    println!("{:?}", primes);
 }
