@@ -1,5 +1,6 @@
 use std::io;
 use rayon::prelude::*;
+use std::fs;
 
 pub fn get_user_input(prompt: &str) -> i128 {
     println!("{}", prompt);
@@ -30,6 +31,12 @@ fn is_prime(number: &i128) -> bool {
 
 fn main() {
     let user_input: i128 = get_user_input("Enter a positive integer greater than 2: ");
+    
+    println!("Calculating primes up to {}...", user_input);
     let primes: Vec<i128> = primes_up_to(user_input);
-    println!("{:?}", primes);
+    
+    let prime_str: String = format!("{:?}", primes);
+    println!("Saving primes to file...");
+    fs::write("primes.txt", prime_str).expect("Unable to write file.");
+    println!("Primes saved to file.");
 }
