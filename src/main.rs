@@ -25,7 +25,9 @@ fn is_prime(number: &i32) -> bool {
     if number % 2 == 0 {
         return false;
     }
-    !(3..*number).step_by(2).any(|n| number % n == 0)
+    let number_dereferenced: i32 = *number;
+    let root_of_number: i32 = (number_dereferenced as f64).sqrt() as i32;
+    !(3..root_of_number).step_by(2).any(|n| number % n == 0)
 }
 
 fn main() {
