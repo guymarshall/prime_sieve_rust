@@ -26,7 +26,7 @@ fn is_prime(number: &i128) -> bool {
     }
     let number_dereferenced: i128 = *number;
     let root_of_number: i128 = (number_dereferenced as f64).sqrt() as i128;
-    !(3..root_of_number).step_by(2).any(|n| number % n == 0)
+    !(3..root_of_number).step_by(2).any(|n| root_of_number % n == 0)
 }
 
 fn main() {
