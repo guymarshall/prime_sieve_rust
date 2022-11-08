@@ -22,7 +22,10 @@ fn primes_up_to(number: i32) {
 }
 
 fn is_prime(number: &i32) -> bool {
-    !(2..*number).any(|n| number % n == 0)
+    if number % 2 == 0 {
+        return false;
+    }
+    !(3..*number).step_by(2).any(|n| number % n == 0)
 }
 
 fn main() {
